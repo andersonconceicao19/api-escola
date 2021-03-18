@@ -1,0 +1,7 @@
+Seeders serve para criar registros pré existentes no seu banco de dados
+    * Gera o script apartir de
+         "NPX SEQUELIZE-CLI SEED:GENERATE --NAME NOME-SEED"
+    Será gerado um arquivo que será onde colocará os dados pré existentes.
+    
+    Para executar o script com os valores, o comando é:
+        NPX SEQUELIZE-CLI DB:SEED:ALL
