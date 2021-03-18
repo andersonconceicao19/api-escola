@@ -1,10 +1,7 @@
 const bodyParser = require('body-parser') 
+const pessoas = require('./pessoas')
 module.exports = app => {
     app.use(bodyParser.json());
 
-    app.get('/', (req, res)=>{
-        return res.json({
-            message: 'hi'
-        })
-    })
+    app.use('/api/pessoas', pessoas)
 }
