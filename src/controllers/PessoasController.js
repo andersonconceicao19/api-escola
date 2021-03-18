@@ -25,7 +25,7 @@ class PessoasController {
         }
     }
     static async post(request, response, next) {
-        const body = request.body
+        const body = request.body;
         try {
             const cadastro = _context.Pessoas.create(body);
             return response.status(201).json(cadastro);
@@ -34,8 +34,18 @@ class PessoasController {
         }
     }
     static async put(request, response, next) {
+        const body = request.body
+        const { id } = request.params;
         try {
-
+            const upd = _context.Pessoas.update(
+                body,
+                {
+                    where: {
+                        id: id
+                    }
+                }
+            )
+            return response.status(204).end();
         } catch (error) {
             throw new Error()
         }
