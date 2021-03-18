@@ -27,7 +27,7 @@ class PessoasController {
     static async post(request, response, next) {
         const body = request.body;
         try {
-            const cadastro = _context.Pessoas.create(body);
+            const cadastro = await _context.Pessoas.create(body);
             return response.status(201).json(cadastro);
         } catch (error) {
             throw new Error()
@@ -37,7 +37,7 @@ class PessoasController {
         const body = request.body
         const { id } = request.params;
         try {
-            const upd = _context.Pessoas.update(
+            const upd = await  _context.Pessoas.update(
                 body,
                 {
                     where: {
@@ -51,8 +51,14 @@ class PessoasController {
         }
     }
     static async delete(request, response, next) {
+        const { id } = request.params;
         try {
-
+            const dlt = await _context.Pessoas.destroy({
+                where: {
+                    id: id
+                }
+            })
+            return response.status(204).end();
         } catch (error) {
             throw new Error()
         }
