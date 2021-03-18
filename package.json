@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,16 @@
   "bugs": {
     "url": "https://github.com/andersonconceicao19/api-orm-sequelize/issues"
   },
-  "homepage": "https://github.com/andersonconceicao19/api-orm-sequelize#readme"
+  "homepage": "https://github.com/andersonconceicao19/api-orm-sequelize#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "path": "^0.12.7",
+    "sequelize": "^6.5.1",
+    "sequelize-cli": "^6.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
