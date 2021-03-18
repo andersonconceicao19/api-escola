@@ -8,3 +8,5 @@
         --attributes nome:string,ativo:boolean,email:string,role:string"
 ### Gerando migrations a partir de cli
         npx sequelize-cli db:migrate
+
+        
