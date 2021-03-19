@@ -2,8 +2,8 @@ const _context = require('../models');
 class Turmas {
     static async get(request, response, next) {
         try {
-            const pessoas = await _context.Pessoas.findAll()
-            return response.status(200).json(pessoas);
+            const turmas = await _context.Turmas.findAll()
+            return response.status(200).json(turmas);
         }
         catch (error) {
             //tratar erro
@@ -12,10 +12,9 @@ class Turmas {
     }
     static async post(request, response, next) {
         const body = request.body;
-        console.log(body)
         try {
-            const cadastro = await _context.Pessoas.create(body);
-            return response.status(201).json(cadastro);
+            const turmas = await _context.Turmas.create(body);
+            return response.status(201).json(turmas);
         } catch (error) {
             throw new Error()
         }
@@ -24,7 +23,7 @@ class Turmas {
         const body = request.body
         const { id } = request.params;
         try {
-            const upd = await  _context.Pessoas.update(
+            const upd = await _context.Turmas.update(
                 body,
                 {
                     where: {
@@ -40,7 +39,7 @@ class Turmas {
     static async delete(request, response, next) {
         const { id } = request.params;
         try {
-            const dlt = await _context.Pessoas.destroy({
+            const dlt = await _context.Turmas.destroy({
                 where: {
                     id: id
                 }
