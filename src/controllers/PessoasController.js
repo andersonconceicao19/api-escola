@@ -26,6 +26,7 @@ class PessoasController {
     }
     static async post(request, response, next) {
         const body = request.body;
+        console.log(body)
         try {
             const cadastro = await _context.Pessoas.create(body);
             return response.status(201).json(cadastro);
@@ -63,5 +64,32 @@ class PessoasController {
             throw new Error()
         }
     }
+    static async getMatriculaByAluno(request, response, next) {
+        const { id, matriculaId } = request.params;
+        try {
+            const matricula = await _context.Matricula.findOne({
+                where: {
+                    id: matriculaId,
+                    estudante_id: id
+                }
+            })
+            return response.status(200).json(matricula)
+        } catch (error) {
+            throw new Error()
+        }
+    }
+    static async postMatricula(request, response, next) {
+     
+        const { idEstudante } = request.params;
+        const novaMatricula  = { ...request.body, estudante_id: idEstudante };
+        console.log(novaMatricula)
+        try {
+            const cadastro = await _context.Matricula.create(novaMatricula);
+            return response.status(201).json(cadastro);
+        } catch (error) {
+            throw new Error()
+        }
+    }
+
 }
 module.exports = PessoasController;
