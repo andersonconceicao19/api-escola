@@ -1,6 +1,5 @@
 const _context = require('../models');
-
-class PessoasController {
+class Turmas {
     static async get(request, response, next) {
         try {
             const pessoas = await _context.Pessoas.findAll()
@@ -8,19 +7,6 @@ class PessoasController {
         }
         catch (error) {
             //tratar erro
-            throw new Error()
-        }
-    }
-    static async getById(request, response, next) {
-        const { id } = request.params;
-        try {
-            const pessoa = await _context.Pessoas.findOne({
-                where: {
-                    id: id
-                }
-            })
-            return response.status(200).json(pessoa)
-        } catch (error) {
             throw new Error()
         }
     }
@@ -38,7 +24,7 @@ class PessoasController {
         const body = request.body
         const { id } = request.params;
         try {
-            const upd = await _context.Pessoas.update(
+            const upd = await  _context.Pessoas.update(
                 body,
                 {
                     where: {
@@ -64,32 +50,5 @@ class PessoasController {
             throw new Error()
         }
     }
-    static async getMatriculaByAluno(request, response, next) {
-        const { id, matriculaId } = request.params;
-        try {
-            const matricula = await _context.Matricula.findOne({
-                where: {
-                    id: matriculaId,
-                    estudante_id: id
-                }
-            })
-            return response.status(200).json(matricula)
-        } catch (error) {
-            throw new Error()
-        }
-    }
-    static async postMatricula(request, response, next) {
-
-        const { idEstudante } = request.params;
-        const novaMatricula = { ...request.body, estudante_id: idEstudante };
-        console.log(novaMatricula)
-        try {
-            const cadastro = await _context.Matricula.create(novaMatricula);
-            return response.status(201).json(cadastro);
-        } catch (error) {
-            throw new Error()
-        }
-    }
-
 }
-module.exports = PessoasController;
+module.exports = Turmas;
